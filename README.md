@@ -112,17 +112,6 @@ npm run build   # Build para produção
 npm run preview # Visualizar build
 ```
 
-## 🤝 Contribuições
-
-1. Fork o projeto
-2. Crie uma branch (`git checkout -b feature/AmazingFeature`)
-3. Commit suas mudanças (`git commit -m 'Add AmazingFeature'`)
-4. Push para a branch (`git push origin feature/AmazingFeature`)
-5. Abra um Pull Request
-
-## 📄 Licença
-
-Este projeto está sob a licença ISC.
 
 ## 👨‍💻 Autor
 
