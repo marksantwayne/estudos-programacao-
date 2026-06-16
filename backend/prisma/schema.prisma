@@ -1,0 +1,58 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model Funcionario {
+  id            String   @id @default(uuid())
+  nome          String
+  email         String   @unique
+  senha         String
+  cargo         String?
+  ativo         Boolean  @default(true)
+
+  empresaLat    Float?
+  empresaLng    Float?
+  raioPermitido Float    @default(100)
+
+  pontos        Ponto[]
+
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+}
+
+model Ponto {
+  id             String    @id @default(uuid())
+  funcionarioId String
+  tipo           TipoPonto
+  dataHora       DateTime  @default(now())
+
+  latitude       Float
+  longitude      Float
+  endereco       String?
+
+  fotoUrl        String
+  dentroDoRaio   Boolean   @default(true)
+  observacao     String?
+
+  funcionario    Funcionario @relation(fields: [funcionarioId], references: [id])
+
+  createdAt      DateTime @default(now())
+
+  @@index([funcionarioId, dataHora])
+}
+
+enum TipoPonto {
+  ENTRADA
+  CAFE_MANHA_SAIDA
+  CAFE_MANHA_RETORNO
+  ALMOCO_SAIDA
+  ALMOCO_RETORNO
+  CAFE_TARDE_SAIDA
+  CAFE_TARDE_RETORNO
+  SAIDA
+}
